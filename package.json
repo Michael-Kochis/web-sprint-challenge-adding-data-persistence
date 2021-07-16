@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
+    "migrate": "npx knex migrate:up",
+    "rollback": "npx knex migrate:rollback",
     "server": "nodemon index.js",
     "start": "node index.js",
     "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand --silent"
