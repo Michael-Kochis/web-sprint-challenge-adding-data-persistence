@@ -13,10 +13,13 @@ async function find() {
 }
 
 async function findById(task_id) {
-    let returnThis = await db('tasks')
-        .where ({ task_id })
-        .first();
-        returnThis.task_completed = !!returnThis.task_completed;
+    let returnThis = await db('tasks as t')
+    .where({ task_id })
+    .first()
+    .join('projects as p', 't.project_id', 'p.project_id')
+    .select('task_id', 'task_description', 'task_notes', 'task_completed', 
+        'project_name', 'project_description');
+    returnThis.task_completed = !!returnThis.task_completed;
 
         return returnThis;
 }

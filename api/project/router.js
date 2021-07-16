@@ -1,6 +1,7 @@
 const express = require('express');
 
 const projects = require('./model');
+const { checkProjectPayload } = require('./project-middleware');
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ router.get("/", (req, res, next) => {
         }).catch(next);
 })
 
-router.post("/", (req, res, next) => {
+router.post("/", checkProjectPayload, (req, res, next) => {
     const neoProject = req.body;
 
     projects.create(neoProject)
