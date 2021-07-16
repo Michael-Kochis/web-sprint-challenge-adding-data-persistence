@@ -4,6 +4,12 @@ const sharedConfig = {
   useNullAsDefault: true,
   migrations: { directory: './data/migrations' },
   pool: { afterCreate: (conn, done) => conn.run('PRAGMA foreign_keys = ON', done) },
+  typeCast: function(field, next) {
+    if (field.type === 'TINY' && field.length === 1) {
+      return (field.string() === 1);
+    }
+    return next();
+  }
 }
 
 module.exports = {

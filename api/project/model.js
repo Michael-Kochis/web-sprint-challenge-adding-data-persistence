@@ -1,7 +1,13 @@
 const db = require('../../data/dbConfig')
 
 async function find() {
-    return await db('projects');
+    let returnThis = await db('projects');
+
+    returnThis.forEach((record) => {
+        record.project_completed = !!record.project_completed;
+    })
+
+    return returnThis;
 }
 
 async function findById(project_id) {
