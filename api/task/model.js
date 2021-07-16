@@ -1,5 +1,16 @@
 const db = require('../../data/db-config')
 
-module.exports = {
-
+async function find() {
+    return await db('tasks');
 }
+
+async function create(neoProject) {
+    return await db('tasks')
+        .insert(neoProject);
+}
+
+module.exports = {
+    find,
+    create
+}
+
