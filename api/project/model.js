@@ -5,9 +5,12 @@ async function find() {
 }
 
 async function findById(project_id) {
-    return await db('projects')
+    let returnThis = await db('projects')
         .where ({ project_id })
         .first();
+    returnThis.project_completed = !!returnThis.project_completed;
+
+    return returnThis;
 }
 
 async function create(neoProject) {
