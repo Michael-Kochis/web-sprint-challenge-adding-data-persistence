@@ -2,6 +2,7 @@ const express = require('express');
 
 const projects = require('./model');
 const { checkProjectPayload } = require('./project-middleware');
+const { authDenyEndpoint } = require('../auth/auth-middleware');
 
 const router = express.Router();
 
@@ -22,6 +23,18 @@ router.post("/", checkProjectPayload, (req, res, next) => {
                     res.status(201).json(project);
                 }).catch(next);
         }).catch(next);
+})
+
+router.put("/:project_id", authDenyEndpoint, (req, res, next) => {
+    res.status(500).json({ 
+        message: "error, put endpoint for projects is disabled." 
+    })
+})
+
+router.delete("/:project_id", authDenyEndpoint, (req, res, next) => {
+    res.status(500).json({ 
+        message: "error, delete endpoint for projects is disabled." 
+    })
 })
 
 module.exports = router;
