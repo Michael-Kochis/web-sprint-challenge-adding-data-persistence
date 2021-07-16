@@ -17,6 +17,6 @@ async function create(neoProject) {
 
 module.exports = {
     find,
-    findbyId,
+    findById,
     create
 }

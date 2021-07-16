@@ -16,7 +16,7 @@ router.post("/", (req, res, next) => {
 
     tasks.create(neoTask)
         .then((resp) => {
-            tasks.findbyId(resp)
+            tasks.findById(resp)
                 .then(task => {
                     res.status(201).json(task);
                 }).catch(next);

@@ -16,7 +16,7 @@ router.post("/", (req, res, next) => {
 
     projects.create(neoProject)
         .then((resp) => {
-            projects.findbyId(resp)
+            projects.findById(resp)
                 .then(project => {
                     res.status(201).json(project);
                 }).catch(next);
