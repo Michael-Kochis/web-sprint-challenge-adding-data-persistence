@@ -16,7 +16,10 @@ router.post("/", (req, res, next) => {
 
     tasks.create(neoTask)
         .then((resp) => {
-            res.status(201).json(resp);
+            tasks.findbyId(resp)
+                .then(task => {
+                    res.status(201).json(task);
+                }).catch(next);
         }).catch(next);
 })
 

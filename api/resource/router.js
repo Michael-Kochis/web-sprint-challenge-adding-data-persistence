@@ -16,7 +16,10 @@ router.post("/", (req, res, next) => {
 
     resources.create(neoResource)
         .then((resp) => {
-            res.status(201).json(resp);
+            resources.findbyId(resp)
+                .then(resource => {
+                    res.status(201).json(resource);
+                }).catch(next);
         }).catch(next);
 })
 

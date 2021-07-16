@@ -4,6 +4,12 @@ async function find() {
     return await db('projects');
 }
 
+async function findById(project_id) {
+    return await db('projects')
+        .where ({ project_id })
+        .first();
+}
+
 async function create(neoProject) {
     return await db('projects')
         .insert(neoProject);
@@ -11,5 +17,6 @@ async function create(neoProject) {
 
 module.exports = {
     find,
+    findbyId,
     create
 }
