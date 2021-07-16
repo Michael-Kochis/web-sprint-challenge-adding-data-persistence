@@ -7,7 +7,12 @@ const checkProjectPayload = (req, res, next) => {
         res.status(400).json({ 
             message: "For projects, project_name is a required field."
         })
-    } else {
+    } else if (!payload.project_description || 
+        typeof(payload.project_description) !== "string") {
+            res.status(400).json({ 
+                message: "For projects, project_description is a required field."
+            })
+        } else {
         next();
     }
 }
