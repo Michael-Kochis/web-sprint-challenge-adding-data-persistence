@@ -25,13 +25,13 @@ router.post("/", checkProjectPayload, (req, res, next) => {
         }).catch(next);
 })
 
-router.put("/:project_id", authDenyEndpoint, (req, res, next) => {
+router.put("/:project_id", (req, res, next) => {
     res.status(500).json({ 
         message: "error, put endpoint for projects is disabled." 
     })
 })
 
-router.delete("/:project_id", authDenyEndpoint, (req, res, next) => {
+router.delete("/:project_id", (req, res, next) => {
     res.status(500).json({ 
         message: "error, delete endpoint for projects is disabled." 
     })
